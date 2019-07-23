@@ -19,12 +19,16 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  const handleClick = () => {
+    props.handleOnClick(props.bot)
+  }
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => props.handleOnClick(props.bot)}
+        onClick={handleClick}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
