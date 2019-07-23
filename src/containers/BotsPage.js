@@ -54,9 +54,9 @@ class BotsPage extends React.Component {
     return (
       <div>
         <YourBotArmy bots={this.state.userBots} removeBot={this.removeBot}/>
-        <div>
+        <div className='form-holder'>
+          <label>Search By Name</label>
           <form onSubmit={this.handleSubmit}>
-            <label>Search By Name</label>
             <input type='text' value={this.state.input} onChange={this.handleChange} />
             <input type='submit' value='Search' />
           </form>
