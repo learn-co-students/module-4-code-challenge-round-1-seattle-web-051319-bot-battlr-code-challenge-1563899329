@@ -12,3 +12,17 @@
 .ui.grid {
   padding: 0px 20px;
 }
+
+.form-holder {
+  padding-bottom: 20px;
+  display: grid;
+  grid: 1fr 1fr 1fr;
+}
+
+.form-holder label {
+  grid-area: 1 / 2 / span 1 / span 1;
+}
+
+.form-holder form {
+  grid-area: 2 / 2 / span 1 / span 1;
+}
