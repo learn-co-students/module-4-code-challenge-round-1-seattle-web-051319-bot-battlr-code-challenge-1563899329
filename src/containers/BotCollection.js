@@ -5,7 +5,7 @@ class BotCollection extends React.Component {
   //your code here
   displayBots = () => {
 	  return this.props.bots.map(bot => {
-		  return <BotCard key={bot.id} bot={bot} />
+		  return <BotCard key={bot.id} bot={bot} addBot={this.props.addBot} />
 	  })
   }
 
@@ -14,7 +14,6 @@ class BotCollection extends React.Component {
   	  <div className="ui four column grid">
     		<div className="row">
     		  {this.displayBots()}
-    		  Collection of all bots
     		</div>
   	  </div>
   	);
