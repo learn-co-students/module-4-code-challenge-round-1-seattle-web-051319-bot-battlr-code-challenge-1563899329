@@ -6,7 +6,9 @@ class BotsPage extends React.Component {
   //start here with your code for step one
   state = {
     bots: [],
-    userBots: []
+    displayedBots: [],
+    userBots: [],
+    input: ''
   }
   componentDidMount() {
     this.fetchBots()
@@ -15,7 +17,7 @@ class BotsPage extends React.Component {
   fetchBots = () => {
     fetch(' https://bot-battler-api.herokuapp.com/api/v1/bots')
     .then(res => res.json())
-    .then(json => this.setState({bots: json}))
+    .then(json => this.setState({bots: json, displayedBots: json}))
   }
 
   addBot = bot => {
@@ -34,11 +36,32 @@ class BotsPage extends React.Component {
     this.setState({userBots})
   }
 
+  handleSubmit = ev => {
+    ev.preventDefault()
+    const displayedBots = [...this.state.bots].filter(bot => {
+      let name = bot.name.toLowerCase()
+      let input = this.state.input.toLowerCase()
+      return name.includes(input)
+    })
+    this.setState({ displayedBots })
+  }
+
+  handleChange = ev => {
+    this.setState({input: ev.target.value})
+  }
+
   render() {
     return (
       <div>
         <YourBotArmy bots={this.state.userBots} removeBot={this.removeBot}/>
-        <BotCollection bots={this.state.bots} addBot={this.addBot}/>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label>Search By Name</label>
+            <input type='text' value={this.state.input} onChange={this.handleChange} />
+            <input type='submit' value='Search' />
+          </form>
+        </div>
+        <BotCollection bots={this.state.displayedBots} addBot={this.addBot}/>
       </div>
     );
   }
