@@ -19,8 +19,14 @@ class BotsPage extends React.Component {
   }
 
   addBot = bot => {
-    const userBots = this.state.userBots.concat(bot)
-    this.setState({userBots})
+    const currentArmy = this.state.userBots
+    if (!currentArmy.includes(bot)) {
+      const userBots = currentArmy.concat(bot)
+      this.setState({ userBots })
+    }
+    else {
+      console.log('nope')
+    }
   }
 
   removeBot = bot => {
