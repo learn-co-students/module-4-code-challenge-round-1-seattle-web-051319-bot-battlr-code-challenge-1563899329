@@ -19,6 +19,8 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  // This function is just our click handler for adding bots to teams (and removing them).
+  // This isn't super necessary but I wrote this function out just to keep the card div itself clean.
   const handleClick = () => {
     props.handleOnClick(props.bot)
   }

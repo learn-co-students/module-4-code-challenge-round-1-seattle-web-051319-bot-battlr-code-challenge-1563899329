@@ -5,6 +5,7 @@ import BotSpecs from '../components/BotSpecs';
 class BotCollection extends React.Component {
   //your code here
 
+  // This function turns our props into dom elements to display all of the bots
   displayBots = () => {
 	return this.props.bots.map(bot => {
 		return <BotCard key={bot.id} bot={bot} handleOnClick={this.props.addBot} />

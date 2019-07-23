@@ -3,6 +3,7 @@ import BotCard from "../components/BotCard";
 
 class YourBotArmy extends React.Component {
   //your bot army code here...
+  //This function just turns our props into dom elements (in this case bot cards)
   displayMyBots = () => {
     return this.props.bots.map(bot => {
       return <BotCard key={bot.id} bot={bot} handleOnClick={this.props.removeBot}/>

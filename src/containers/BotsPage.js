@@ -10,16 +10,21 @@ class BotsPage extends React.Component {
     userBots: [],
     input: ''
   }
+
+  // This lifecycle method is used to allow us to fetch our bots once.
   componentDidMount() {
     this.fetchBots()
   }
 
+  // This function fetches all of the bots from the api.
+  // This function is called in our component did mount so that we can get the bots once without infinitely looping.
   fetchBots = () => {
     fetch(' https://bot-battler-api.herokuapp.com/api/v1/bots')
     .then(res => res.json())
     .then(json => this.setState({bots: json, displayedBots: json}))
   }
 
+  // This function adds a bot to a users team but prevents a user from adding the same bot more than once
   addBot = bot => {
     const currentArmy = this.state.userBots
     if (!currentArmy.includes(bot)) {
@@ -31,11 +36,14 @@ class BotsPage extends React.Component {
     }
   }
 
+  // This function simply removes a bot from a users team
   removeBot = bot => {
     const userBots = [...this.state.userBots].filter(singleBot => singleBot.id !== bot.id)
     this.setState({userBots})
   }
 
+  // This function will use the input provided by the form to search for matching bots.
+  // I am using the bots state rather than displayed bots so that it updates from all bots each time a user searches.
   handleSubmit = ev => {
     ev.preventDefault()
     const displayedBots = [...this.state.bots].filter(bot => {
@@ -46,6 +54,7 @@ class BotsPage extends React.Component {
     this.setState({ displayedBots })
   }
 
+  // This function allows us to update our controlled form when a user provides input.
   handleChange = ev => {
     this.setState({input: ev.target.value})
   }
